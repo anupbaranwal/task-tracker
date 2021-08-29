@@ -38,6 +38,8 @@ function App() {
     },
   ]);
 
+  const [showAddTaskSection, setShowAddTaskSection] = useState(false);
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -52,8 +54,12 @@ function App() {
 
   return (
     <div className="container">
-      <Header title="Task Tracker" />
-      <AddTask />
+      <Header
+        title="Task Tracker"
+        showAdd={showAddTaskSection}
+        onAdd={() => setShowAddTaskSection(!showAddTaskSection)}
+      />
+      {showAddTaskSection && <AddTask />}
       {tasks.length > 0 ? (
         <Tasks
           tasks={tasks}
