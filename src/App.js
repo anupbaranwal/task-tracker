@@ -28,7 +28,7 @@ function App() {
       id: 4,
       text: "Go to Dmart",
       day: "Aug 23rd at 2:30pm",
-      reminder: true,
+      reminder: false,
     },
     {
       id: 5,
@@ -39,6 +39,13 @@ function App() {
   ]);
 
   const [showAddTaskSection, setShowAddTaskSection] = useState(false);
+
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newTask = { id, ...task };
+    console.log(newTask);
+    setTasks([...tasks, newTask]);
+  };
 
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -59,7 +66,7 @@ function App() {
         showAdd={showAddTaskSection}
         onAdd={() => setShowAddTaskSection(!showAddTaskSection)}
       />
-      {showAddTaskSection && <AddTask />}
+      {showAddTaskSection && <AddTask addTask={addTask} />}
       {tasks.length > 0 ? (
         <Tasks
           tasks={tasks}
