@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import AddTask from "./component/AddTask";
 import Header from "./component/Header";
 import Tasks from "./component/Tasks";
 
@@ -52,6 +53,7 @@ function App() {
   return (
     <div className="container">
       <Header title="Task Tracker" />
+      <AddTask />
       {tasks.length > 0 ? (
         <Tasks
           tasks={tasks}
